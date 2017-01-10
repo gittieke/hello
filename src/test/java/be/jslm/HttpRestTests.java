@@ -1,6 +1,5 @@
 package be.jslm;
 
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,20 +13,22 @@ import org.springframework.test.annotation.Timed;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import be.jslm.pojo.StockQuote;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestPropertySource("/test.properties")
-public class HelloApplicationTests {
+public class HttpRestTests {
 	
-	private static final Logger log = LoggerFactory.getLogger(HelloApplicationTests.class);
+	private static final Logger log = LoggerFactory.getLogger(HttpRestTests.class);
 	
 	@Autowired
 	private TestRestTemplate restTemplate;
 	
-	@Value("${url.yahoo.api}") 
+	@Value("${yql.api}") 
 	private String url;
 	
-	@Value("${yql.finance.historical}") 
+	@Value("${yql.finance.historicaldata}") 
 	private String query;
 	
 	@Value("${yql.format}") 
@@ -36,17 +37,22 @@ public class HelloApplicationTests {
 	@Value("${yql.env}") 
 	private String env;
 	
+	/** 
+	 * Integration Test - REST call to YQL over HTTP 
+	 */
 	@Test
 	@Timed(millis=1000)
-	public void testJsonResponse(){
-		
+	public void testJsonResponse() {
+				
 		String whereClause = " where symbol in (\"BVN\") and startDate = \"2016-04-15\" and endDate = \"2016-04-18\"";
 		String restJsonUrl = url + "?q=" + query + whereClause + "&" + format  + "&" +  env;
+		
+		log.info(restJsonUrl);		
 		String restJsonResp = this.restTemplate.getForObject(restJsonUrl, String.class);
 		log.info(restJsonResp);					
 	}
-	
-	@Test
+		
+	//@Test
 	public void testJsonResults(){
 		
 		String whereClause = " where symbol in (\"BVN\") and startDate = \"2016-04-15\" and endDate = \"2016-04-18\"";	
@@ -70,8 +76,8 @@ public class HelloApplicationTests {
      "Date": "2016-04-15",
 		 */
 		
-        Quote quote = restTemplate.getForObject(restJsonUrl, Quote.class);
-        log.info(quote.toString());
+		StockQuote stockQuote = this.restTemplate.getForObject(restJsonUrl, StockQuote.class);
+        log.info(stockQuote.toString());
 
 		
 	}

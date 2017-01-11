@@ -8,7 +8,5 @@ import be.jslm.pojo.StockQuote;
 public interface HistoricalStockQuoteService {
 	
 	public List<StockQuote> getLastStockQuote(String symbol);
-	
-	public List<StockQuote> getStockQuote(String symbol, Enum<Period> period);
-
+		
 }

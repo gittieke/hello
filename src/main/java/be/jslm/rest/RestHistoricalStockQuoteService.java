@@ -5,11 +5,16 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import be.jslm.pojo.StockQuote;
 import be.jslm.service.HistoricalStockQuoteService;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service 
 public class RestHistoricalStockQuoteService
@@ -40,16 +45,20 @@ implements HistoricalStockQuoteService {
 	}
 	        	
    	public List<StockQuote> getLastStockQuote(String symbol){
-   		
-   		log.info("symbol:" +symbol);
-   		log.info("url:" +url);
-   		
+   		   		
 		//this.restTemplate.getForObject(queryBuilder(symbol, period), StockQuote.class, new TypeReference<List<StockQuote>>(){});
-   		String restJsonResp = this.restTemplate.getForObject(queryBuilder(symbol), String.class);
-		log.info(restJsonResp);	
-		return null;
+   		// String restJsonResp = this.restTemplate.getForObject(queryBuilder(symbol), String.class);
    		
+ResponseEntity<List<StockQuote>> e = 
+this.restTemplate.exchange(queryBuilder(symbol), HttpMethod.GET, null, new ParameterizedTypeReference<List<StockQuote>>(){});
+		
+	
+   		
+   		// public StockQuote(String symbol, LocalDate date, float close, long volume, float high, float low)   		
+		return null;   		
    	}
+   	
+   	
 	   	
    	private String queryBuilder(String symbol){
    		

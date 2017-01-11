@@ -9,9 +9,7 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class HelloApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HelloApplication.class, args);
-		
+	public static void main(String[] args) {		
 		ApplicationContext ctx = SpringApplication.run(HelloApplication.class, args);
 		String[] beanNames = ctx.getBeanDefinitionNames();
 		Arrays.sort(beanNames);

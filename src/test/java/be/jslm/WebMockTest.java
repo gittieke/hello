@@ -21,11 +21,11 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import be.jslm.help.Helper;
 import be.jslm.pojo.StockQuote;
-import be.jslm.rest.RestHistoricalStockQuoteService;
+import be.jslm.rest.client.HistoricalStockQuoteRestClient;
 import be.jslm.service.HistoricalStockQuoteService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(RestHistoricalStockQuoteService.class)
+@WebMvcTest(HistoricalStockQuoteRestClient.class)
 public class WebMockTest {
 	
 	private static final Logger log = LoggerFactory.getLogger(WebMockTest.class);	
@@ -60,7 +60,7 @@ public class WebMockTest {
     
     @Test
     public void mockGetStockQuote2() throws Exception {
-    	HistoricalStockQuoteService service = mock(RestHistoricalStockQuoteService.class);
+    	HistoricalStockQuoteService service = mock(HistoricalStockQuoteRestClient.class);
     	List l = service.getLastStockQuote("BVN");
     	verify(service).getLastStockQuote("BVN");
     	

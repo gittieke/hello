@@ -11,15 +11,15 @@ public class Helper {
 	
 	@Autowired
 	private static ApplicationContext ctx;
-		
+
+	/** only one main in Spring Boot project
 	public static void main (String args[]){
 					
 		String[] beanNames = ctx.getBeanDefinitionNames();
 		Arrays.sort(beanNames);
 		for (String beanName : beanNames) {
 		    System.out.println(beanName);
-		}
-	
-	}
+		}	
+	}*/
 
 }

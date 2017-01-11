@@ -37,13 +37,37 @@ public class HttpRestTest {
 	 * Integration Test - REST call to YQL over HTTP 
 	 */
 	@Test
-	public void testGetLastStockQuote() {		
+	public void testGetLastStockQuote() throws Exception {		
 		log.info("test - service.getLastStockQuote");		
 		service.getLastStockQuote("BVN");	
 		log.info("test - service.getLastStockQuote");									
 	}
 	
-	@Test
+	//@Test
+	public void testJsonString() throws Exception {	
+		//String w getForEntity
+		/*
+		System.out.println("ResponseEntity<String> response2");
+		ResponseEntity<String> response2 = this.restTemplate.getForEntity(
+				"http://localhost:9081/stockQuoteYQL", String.class);
+		System.out.println(response2);
+		*/
+	}		
+	
+	//@Test
+	public void testJsonParameterizedTypeReference() throws Exception {	
+		/* :stockQuoteList and/or /stockQuoteListYQL  
+		ResponseEntity<List<StockQuote>> response = this.restTemplate.exchange("http://localhost:9081/stockQuoteList", 
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<StockQuote>>(){});   		   		   	
+		List<StockQuote> sqList = response.getBody();
+		Iterator<StockQuote> iterator = response.getBody().iterator(); 
+		while(iterator.hasNext()) {
+		StockQuote q = iterator.next();
+		System.out.println(q);
+		*/
+	}	
+		
+	//@Test
 	public void getBeanDefinitionNamesTest() {
 		String[] beanNames = applicationContext.getBeanDefinitionNames();
 		Arrays.sort(beanNames);

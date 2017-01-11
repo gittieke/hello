@@ -1,26 +1,23 @@
-package be.jslm.rest;
+package be.jslm.rest.client;
 
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import be.jslm.pojo.StockQuote;
+import be.jslm.pojo.YQLResponseWrapper;
 import be.jslm.service.HistoricalStockQuoteService;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @Service 
-public class RestHistoricalStockQuoteService
+public class HistoricalStockQuoteRestClient
 implements HistoricalStockQuoteService {
 	
-	private static final Logger log = LoggerFactory.getLogger(RestHistoricalStockQuoteService.class);	
+	private static final Logger log = LoggerFactory.getLogger(HistoricalStockQuoteRestClient.class);	
 	
 	private RestTemplate restTemplate;
 		
@@ -39,27 +36,18 @@ implements HistoricalStockQuoteService {
     //@Autowired
 	//private Environment env;	
 		
-	public RestHistoricalStockQuoteService() {
+	public HistoricalStockQuoteRestClient() {
 		System.out.println("*** init Constructor ***");
 		this.restTemplate = new RestTemplate();		
 	}
-	        	
-   	public List<StockQuote> getLastStockQuote(String symbol){
-   		   		
-		//this.restTemplate.getForObject(queryBuilder(symbol, period), StockQuote.class, new TypeReference<List<StockQuote>>(){});
-   		// String restJsonResp = this.restTemplate.getForObject(queryBuilder(symbol), String.class);
-   		
-ResponseEntity<List<StockQuote>> e = 
-this.restTemplate.exchange(queryBuilder(symbol), HttpMethod.GET, null, new ParameterizedTypeReference<List<StockQuote>>(){});
-		
-	
-   		
-   		// public StockQuote(String symbol, LocalDate date, float close, long volume, float high, float low)   		
-		return null;   		
+			        
+   	public List<StockQuote> getLastStockQuote(String symbol) throws Exception {
+   		   		   		   		   		   		   		  		
+   		ResponseEntity<YQLResponseWrapper> resp = this.restTemplate.getForEntity(
+   				queryBuilder(symbol), YQLResponseWrapper.class);
+   		return resp.getBody().getQueryWrapper().getResults().getStockQuoteList();   		   	   		   	
    	}
-   	
-   	
-	   	
+   	   		   
    	private String queryBuilder(String symbol){
    		
    		String where = String.format(" where symbol in (\"%s\")", symbol);

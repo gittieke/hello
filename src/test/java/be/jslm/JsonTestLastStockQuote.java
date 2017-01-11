@@ -9,8 +9,12 @@ import org.springframework.boot.test.context.*;
 import org.springframework.boot.test.json.*;
 import org.springframework.test.context.junit4.*;
 
-import be.jslm.pojo.StockQuote;
+import be.jslm.domain.StockQuote;
+
 import static org.assertj.core.api.Assertions.*;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RunWith(SpringRunner.class)
 @JsonTest
@@ -21,6 +25,7 @@ public class JsonTestLastStockQuote {
 
     @Test
     public void testSerialize() throws Exception {
+    	new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get("C:\\Users\\id809201\\dev\\hello\\src\\main\\resources\\stock-quote-yql.json")));
     	StockQuote lastStockQuote = new StockQuote("BVN", new LocalDate(2017,1,9), new Float(12.79), 1005700, new Float(13.00), new Float(12.44));
         // Assert against a `.json` file in the same package as the test
         assertThat(this.json.write(lastStockQuote)).isEqualToJson("expected.json");

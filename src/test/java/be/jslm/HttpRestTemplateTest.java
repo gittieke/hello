@@ -13,7 +13,7 @@ import org.springframework.test.annotation.Timed;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import be.jslm.pojo.StockQuote;
+import be.jslm.domain.StockQuote;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)

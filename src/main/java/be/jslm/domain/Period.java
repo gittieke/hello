@@ -1,4 +1,4 @@
-package be.jslm.pojo;
+package be.jslm.domain;
 
 public enum Period {
 		

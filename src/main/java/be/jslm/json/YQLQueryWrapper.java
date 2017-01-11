@@ -1,4 +1,4 @@
-package be.jslm.pojo;
+package be.jslm.json;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class QueryWrapper {
+public class YQLQueryWrapper {
 		
 	@JsonProperty("count")
 	private int count;
@@ -18,7 +18,7 @@ public class QueryWrapper {
 	private String lang;	
 		
     @JsonProperty("results")
-	private ResultsWrapper results;
+	private YQLResultsWrapper results;
 		
 	public int getCount() {
 		return count;
@@ -44,11 +44,11 @@ public class QueryWrapper {
 		this.create = create;
 	}
 
-	public ResultsWrapper getResults() {
+	public YQLResultsWrapper getResults() {
 		return results;
 	}
 
-	public void setResults(ResultsWrapper results) {
+	public void setResults(YQLResultsWrapper results) {
 		this.results = results;
 	}
 

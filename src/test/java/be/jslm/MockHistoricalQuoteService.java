@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import be.jslm.pojo.Period;
+import be.jslm.domain.Period;
 import be.jslm.service.HistoricalStockQuoteService;
 
 @RunWith(SpringRunner.class)

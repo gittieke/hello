@@ -19,8 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import be.jslm.help.Helper;
-import be.jslm.pojo.StockQuote;
+import be.jslm.domain.StockQuote;
 import be.jslm.rest.client.HistoricalStockQuoteRestClient;
 import be.jslm.service.HistoricalStockQuoteService;
 

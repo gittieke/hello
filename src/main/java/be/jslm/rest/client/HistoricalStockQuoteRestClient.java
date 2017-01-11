@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import be.jslm.pojo.StockQuote;
-import be.jslm.pojo.YQLResponseWrapper;
+import be.jslm.domain.StockQuote;
+import be.jslm.json.YQLResponseWrapper;
 import be.jslm.service.HistoricalStockQuoteService;
 
 @Service 

@@ -2,6 +2,18 @@ package be.jslm.pojo;
 
 import org.joda.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+/*
+"Symbol": "BVN",
+"Date": "2016-04-18",
+"Open": "8.16",
+"High": "8.25",
+"Low": "7.98",
+"Close": "8.01",
+"Volume": "1285300",
+*/
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class StockQuote {
 	
 	private String symbol;

@@ -18,9 +18,9 @@ import be.jslm.pojo.StockQuote;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestPropertySource("/test.properties")
-public class HttpRestTests {
+public class HttpRestTemplateTest {
 	
-	private static final Logger log = LoggerFactory.getLogger(HttpRestTests.class);
+	private static final Logger log = LoggerFactory.getLogger(HttpRestTemplateTest.class);
 	
 	@Autowired
 	private TestRestTemplate restTemplate;

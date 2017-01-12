@@ -1,4 +1,4 @@
-package be.jslm;
+package be.jslm.integration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,9 +18,9 @@ import be.jslm.domain.StockQuote;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestPropertySource("/test.properties")
-public class HttpRestTemplateTest {
+public class HttpYQLRestTemplateTest {
 	
-	private static final Logger log = LoggerFactory.getLogger(HttpRestTemplateTest.class);
+	private static final Logger log = LoggerFactory.getLogger(HttpYQLRestTemplateTest.class);
 	
 	@Autowired
 	private TestRestTemplate restTemplate;
@@ -38,22 +38,22 @@ public class HttpRestTemplateTest {
 	private String env;
 	
 	/** 
-	 * Integration Test - REST call to YQL over HTTP 
+	 * Integration Test - REST call to YQL over HTTP to test the connection to the outside (Proxy test)
 	 */
 	@Test
 	@Timed(millis=1000)
-	public void testJsonResponse() {
+	public void testProxy() {
 				
 		String whereClause = " where symbol in (\"BVN\") and startDate = \"2016-04-15\" and endDate = \"2016-04-18\"";
-		String restJsonUrl = url + "?q=" + query + whereClause + "&" + format  + "&" +  env;
+		String yqlUrl = url + "?q=" + query + whereClause + "&" + format  + "&" +  env;
 		
-		log.info(restJsonUrl);		
-		String restJsonResp = this.restTemplate.getForObject(restJsonUrl, String.class);
-		log.info(restJsonResp);					
+		log.info(yqlUrl);		
+		String resp = this.restTemplate.getForObject(yqlUrl, String.class);
+		log.info(resp);					
 	}
 		
-	//@Test
-	public void testJsonResults(){
+	//@Test:TODO: deserialise TEST: assert on high/low/vol/date
+	public void test(){
 		
 		String whereClause = " where symbol in (\"BVN\") and startDate = \"2016-04-15\" and endDate = \"2016-04-18\"";	
 		String restJsonUrl = url + "?q=" + query + whereClause  + "&" + format  + "&" +  env;
